@@ -6,3 +6,4 @@ tensorflow
 mediapipe
 opencv-python-headless
 streamlit_webrtc
+av
