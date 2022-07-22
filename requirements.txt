@@ -1,0 +1,17 @@
+streamlit
+streamlit_webrtc
+torch
+tensorflow
+
+torchvision
+opencv-python
+matplotlib
+PyYAML
+scipy
+seaborn
+cvzone
+mediapipe
+pillow-heif
+scikit-image
+scikit-learn
+opencv-contrib-python
