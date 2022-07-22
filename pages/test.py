@@ -26,9 +26,9 @@ except:
 while run:
     _, frame = cap.read()
     # st.text(frame)
-    # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     imgOutput = frame
-    # imgOutput = frame.copy()
+    imgOutput = frame.copy()
     hands, frame = detector.findHands(frame)
     if hands:
         x, y, w, h = hands[0]["bbox"]
