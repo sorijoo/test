@@ -18,7 +18,7 @@ labels.remove("Z")
 def process(frame):
     frame.flags.writeable = True
     hands, frame = detector.findHands(frame)
-    return cv2.imshow(imgOutput)
+    return cv2.imshow(frame)
 
 RTC_CONFIGURATION = RTCConfiguration(
     {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
