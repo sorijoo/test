@@ -17,7 +17,7 @@ labels.remove("Z")
 
 def process(frame):
     frame.flags.writeable = True
-    frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+    # frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
     imgOutput = frame.copy()
     hands, frame = detector.findHands(frame)
     if hands:
@@ -42,7 +42,7 @@ def process(frame):
             cv2.putText(imgOutput, labels[idx], (x, y-26), cv2.FONT_HERSHEY_COMPLEX, 2, (255, 255, 255), 2)
             cv2.rectangle(imgOutput, (x-offset, y-offset), (x+w+offset, y+h+offset), (255, 0, 139), 4)
 
-    return cv2.flip(frame, 1)
+    return cv2.imshow(imgOutput)
 
 RTC_CONFIGURATION = RTCConfiguration(
     {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
