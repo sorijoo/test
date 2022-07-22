@@ -109,15 +109,8 @@ if filename is not None:
     st.text(type(filename))
     img = Image.open(filename)
     img = img.convert('L')
-    img = img.resize((300, )) 
-    plt.figure(figsize=(4, 4))
-    plt.imshow(img)
-    plt.axis('off')
-
-
-
-    # img = imread(filename)
-    # img = preprocess_input(img)
+    img = img.resize((300, 300)) 
+    img = np.array(img)
     pred = np.argmax(model.predict(img.reshape(1, 300, 300, 1)))
     # text = []
     st.image(img, use_column_width=False)
