@@ -7,7 +7,7 @@ RTC_CONFIGURATION = RTCConfiguration(
     {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
 )
 
-st.set_page_config(page_title="Streamlit WebRTC Demo", page_icon="🤖")
+st.set_page_config(page_title="Just DDance!", page_icon="🕺")
 task_list = ["Video Stream"]
 
 with st.sidebar:
