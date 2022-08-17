@@ -9,4 +9,3 @@ mediapipe
 opencv-python-headless
 streamlit-webrtc
 av
-pytube
