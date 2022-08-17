@@ -4,7 +4,7 @@ import json
 
 import mediapipe as mp
 import cv2
-import pytube
+# import pytube
 
 class JustDDance:
     def __init__(self):
@@ -16,11 +16,11 @@ class JustDDance:
         self.__user_shape = None
         self.__const_k = 0.3
     
-    def download_video(self):
-        url = input("연습할 춤의 유튜브 링크: ")
-        yt = pytube.YouTube(url)
-        stream = yt.streams.filter(res="720p").first()
-        stream.download(self.__download_path)
+    # def download_video(self):
+    #     url = input("연습할 춤의 유튜브 링크: ")
+    #     yt = pytube.YouTube(url)
+    #     stream = yt.streams.filter(res="720p").first()
+    #     stream.download(self.__download_path)
     
     def scaling_coor(self, keypoint_path): # "./keypoint_extraction/[주간아 직캠] IVE YUJIN - LOVE DIVE (아이브 유진 - 러브 다이브) l EP556_keypoints.json"
         with open(keypoint_path, "r") as file:
