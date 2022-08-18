@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from html_module import line_break, section, callout, title
-from PIL import Image
 
 # 전체 페이지 설정
 st.set_page_config(
@@ -29,7 +28,7 @@ st.header('Background')
 
 st.header('유사 서비스')
 
-tab1, tab2, tab3= st.tabs(["Just Dance", "RingFit", "Kinect"])
+tab1, tab2, tab3 = st.tabs(["Just Dance", "RingFit", "Kinect"])
 
 with tab1:
     # 개요 section
