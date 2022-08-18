@@ -157,6 +157,7 @@ class JustDDance:
 import av
 from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration, VideoProcessorBase
 
+jd = JustDDance()
 
 RTC_CONFIGURATION = RTCConfiguration(
     {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
@@ -166,7 +167,7 @@ class VideoProcessor:
     def recv(self, frame):
         image = frame.to_ndarray(format="bgr24")
 
-        image = show_dance_tutorial(image)
+        image = jd.show_dance_tutorial(image, "../dataset/video/IVE_YUJIN_-_LOVE_DIVE__-__l_EP556.mp4","../dataset/keypoint_extraction/video_keypoints.json")
 
         return av.VideoFrame.from_ndarray(image, format="bgr24")
 
