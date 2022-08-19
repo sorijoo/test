@@ -191,9 +191,9 @@ ACC = {K \over L2_pose + w \times L2_hand + K}
 """)
 
 st.subheader('테스트 영상')
-video_file = open('data/Just DDance! 2022-08-15 23-35-45.mp4', 'rb')
-video_bytes = video_file.read()
-st.video(video_bytes)
+# video_file = open('data/Just DDance! 2022-08-15 23-35-45.mp4', 'rb')
+# video_bytes = video_file.read()
+# st.video(video_bytes)
 
 st.markdown("[![test](https://img.youtube.com/vi/iyMM7Ysq-iA/0.jpg)](https://www.youtube.com/watch?v=iyMM7Ysq-iA)")
 st.image('https://nuyhc.github.io/assets/images/sourceImg/JustDDance/justddance_1.png')
