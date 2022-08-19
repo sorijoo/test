@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 import mediapipe as mp
 import cv2
 import pytube
-from ffpyplayer.player import MediaPlayer```""")
+from ffpyplayer.player import MediaPlayer""")
 
 st.subheader('데이터 수집')
 
@@ -187,7 +187,7 @@ L2-Norm의 경우, 두 벡터가 일치하면(기존 안무와 사용자의 안�
 
 """)
 st.latex("""
-ACC = {K \over L2{pose} + w \times L2{hand} + K}
+ACC = {K \over L2{pose} + w \\times L2{hand} + K}
 """)
 
 st.subheader('테스트 영상')
