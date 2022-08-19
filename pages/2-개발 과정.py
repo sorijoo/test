@@ -9,7 +9,8 @@ st.write("""
 
 st.subheader('사용 라이브러리')
 st.markdown("""
-```import os
+```python
+import os
 import numpy as np
 import pandas as pd
 import json
@@ -43,7 +44,8 @@ openpose를 이용해 여러 사람에 대한 포즈 추정이나 YOLO 모델을
 st.subheader('키포인트 추출')
 
 st.markdown("""
-```def extract_keypoints(self, isMirr=False, showExtract=False):
+```python
+def extract_keypoints(self, isMirr=False, showExtract=False):
         if not os.path.exists(self.__keypoints_path): os.mkdir(self.__keypoints_path)
         
         keypoint_dict_pose = []
@@ -71,7 +73,7 @@ st.markdown("""
             cv2.waitKey(1)
         # Save coord. Data for json type
         with open(self.__keypoints_path+"/"+self.__dance_name+"_keypoints.json", "w") as keypoints:
-            json.dump(keypoint_dict_pose, keypoints)```""")
+            json.dump(keypoint_dict_pose, keypoints)""")
 st.write("""
 기본적인 프로세스는 영상에서 키포인트들을 추출하고 해당 키포인트를 저장해, 추후에 사용하는 방식.
 디텍션 모델을 활용해 영상의 프레임 단위로 키포인트를 추출해 저장함.
@@ -84,9 +86,10 @@ st.write("""
 수집되지 않는 원인은 디텍션이 잘되지 않아서인데, 이 부분은 직접 모델을 생성해서 해결할 수 있지만 또 다른 문제가 되어서 포즈만 사용함""")
 
 st.markdown("""
-```keypoint_dict_pose.append(
+```python
+keypoint_dict_pose.append(
     {str(idx): [lmk.x, lmk.y, lmk.z] for idx, lmk in enumerate(results.pose_landmarks.landmark)}
-    )```""")
+    )""")
 st.write("""
 Pose 키포인트의 경우 33개가 존재하고, 위와 같은 방식으로 각 프레임에 대해 모든 pose 키포인트를 수집해 json 형식으로 저장함.
 
@@ -105,7 +108,8 @@ st.write("""
 사용자의 화면은 1280*720으로 설정했는데, 해당 화면에 추출된 좌표를 알맞은 위치에 출력하기 위해서는 스케일링이 필요함.
 """)
 st.markdown("""
-```try:
+```python
+try:
     # get coors MARGIN
     cors_margin = self.__get_margin([user_input["0"], user_input["23"], user_input["24"]], [dance_cors[dance_cors_frames][0], dance_cors[dance_cors_frames][23], dance_cors[dance_cors_frames][24]])
     for pose_point in [11, 12, 13, 14, 15, 16, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]:
@@ -115,7 +119,7 @@ st.markdown("""
 
         self.__draw_skeleton(user_image, skeletons)
         dance_cors_frames +=1
-except: pass```""")
+except: pass""")
 st.image("https://google.github.io/mediapipe/images/mobile/pose_tracking_full_body_landmarks.png")
 st.write("""
 불러온 데이터는 행이 프레임 번호고, 각 열이 pose에 맵핑되어 있는 키.""")
@@ -124,12 +128,13 @@ st.markdown("""
 
 st.write("cors_maring은 두 개의 영상에서 등장하는 사람들의 코-왼쪽 엉덩이-오른쪽 엉덩이를 연결해 얻은 삼각형의 무게 중심 좌표의 차이값. 스케일링 이전에 해당 값만큼 좌표들을 매 프레임 이동시켜주면 트랙킹 효과를 얻을 수 있음.")
 
-st.markdown("""```SUDO:
+st.markdown("""```python
+SUDO:
 user_ratio = Distance Two Points
 dance_ratio = Distance Two Points
 ratio = user_ratio/dance_ratio
 
-x_cor_pose, y_cor_pose = x_cor_pose*ratio, y_cor_pose*ratio```""")
+x_cor_pose, y_cor_pose = x_cor_pose*ratio, y_cor_pose*ratio""")
 
 st.write("위와 같은 방식으로 각 영상에서의 기준 길이를 구해 각 좌표를 이동 시켜주는 등 여러가지 방법을 시도해봤지만 성공하지는 못했음. 어깨의 길이나 키의 길이를 구해 사용했는데, x축을 이동하는 방식은,")
 
@@ -165,7 +170,7 @@ def __draw_skeleton(self, image, skeleton):
     cv2.line(image, skeleton[27], skeleton[31], (255, 102, 102), thickness=7, lineType=cv2.LINE_AA, shift=None) # 왼발
     # 상체 스켈레톤 (회색)
     cv2.line(image, skeleton[11], skeleton[12], (224, 224, 224), thickness=5, lineType=cv2.LINE_AA, shift=None)
-    cv2.line(image, skeleton[23], skeleton[24], (224, 224, 224), thickness=5, lineType=cv2.LINE_AA, shift=None)   ```""")
+    cv2.line(image, skeleton[23], skeleton[24], (224, 224, 224), thickness=5, lineType=cv2.LINE_AA, shift=None)""")
 
 st.subheader('정확도 측정')
 
@@ -173,9 +178,10 @@ st.write("""
 n-차원 공간에서 두 벡터의 유사도를 측정하는 방식에 대해 고민을 하다가, L2-Norm을 사용
 """)
 st.markdown("""
-```acc_per_frame.append(np.round(self.__const_k / (np.linalg.norm([(x_cor_pose/user_image.shape[1]-cors_margin[0])-user_input[str(pose_point)][0], (y_cor_pose/user_image.shape[0]-cors_margin[1])-user_input[str(pose_point)][1], (z_cor_pose/1000-cors_margin[2])-user_input[str(pose_point)][2]]) + self.__const_k), 2))
+```python
+acc_per_frame.append(np.round(self.__const_k / (np.linalg.norm([(x_cor_pose/user_image.shape[1]-cors_margin[0])-user_input[str(pose_point)][0], (y_cor_pose/user_image.shape[0]-cors_margin[1])-user_input[str(pose_point)][1], (z_cor_pose/1000-cors_margin[2])-user_input[str(pose_point)][2]]) + self.__const_k), 2))
 
-acc = np.mean(acc_per_frame)*100```""")
+acc = np.mean(acc_per_frame)*100""")
 
 st.latex("""
 Acc = {K \over L2_Norm + K}
@@ -208,7 +214,7 @@ st.markdown("""
 #### 1. 프레임 드랍 문제
 기본적으로 mediapipe 모델이 동작하면 프레임이 강제적으로 드랍된다.
 드랍된 프레임을 조금이라고 보완하기 위해서 프레임수를 직접 계산해 강제적으로 프레임을 넘기는 방법을 선택했다. 이전보다는 상당 부분 개선이 되었지만 여전히 문제가 있다.
-```
+```python
 pTime = 0
 FPS = 댄스 영상.get(cv2.CAP_PROP_FPS)
 
